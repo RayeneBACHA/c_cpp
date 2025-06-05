@@ -1,8 +1,8 @@
 run: compile
-	./myapp
+	./v1
 
-compile: rm
-	gcc main.c -o myapp
+compile: clean
+	gcc izr.c -o v1
 
-rm:
-	rm ./myapp
+clean:
+	rm -f v1
