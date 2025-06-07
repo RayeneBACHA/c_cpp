@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake Build",
+      "type": "shell",
+      "command": "cmake -S . -B build && cmake --build build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean Build Directory",
+      "type": "shell",
+      "command": "rm -rf build",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+        "label": "Hallo",
+        "type": "shell",
+        "command" : "echo hello"
+    }
+  ]
+}
