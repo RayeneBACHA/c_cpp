@@ -1,8 +1,9 @@
 {
     "files.associations": {
-        "malloc.h": "c",
-        "math.h": "c",
-        "stdio.h": "c",
-        "types.h": "c"
+        "cstdio": "c",
+        "deque": "c",
+        "string": "c",
+        "vector": "c",
+        "functional": "c"
     }
 }
