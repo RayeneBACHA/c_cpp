@@ -21,6 +21,7 @@ typedef struct SClient {
 typedef struct SCompte {
     int Code_cpt;
     int Code_cli;
+    int Saldo;
     struct Date d_compte;
 }SCompte;
 
@@ -29,8 +30,10 @@ typedef struct SCompte {
 SClient clients[20];
 SCompte comptes[20];
 
-
-
+void kund_verwalten(int x);
+void konto_verwalten(int x);
+void operationen_verwalten(int x);
+void sous_menu(int x);
 
 
 
@@ -56,9 +59,14 @@ int ReadData() {
     return nbClients;
 }
 
-
+int compare(const void *a, const void *b) {
+    const SClient *c1 = (const SClient*)a;
+    const SClient *c2 = (const SClient*)b;
+    return strcmp(c1->Nom, c2->Nom);
+}
 void kunden_anzeigen(){
     int nbClients = ReadData();
+    qsort(clients, nbClients, sizeof(SClient), compare);
     for (int i = 0; i < nbClients; i++)
     {
         printf("\nCode Client : %d", clients[i].Code_cli);
@@ -69,10 +77,10 @@ void kunden_anzeigen(){
 }
     
 void kund_verwalten(int x) {
-    struct SClient client;
     FILE *file;
     if (x == 1)
     {
+        SClient client;
         printf("code client : ");
         scanf("%d", &client.Code_cli);
         printf("Nom : ");
@@ -153,6 +161,55 @@ void kund_verwalten(int x) {
     }
 }
 
+void konto_verwalten(int x) {
+    FILE *file;
+    SCompte compte, compte0;
+    int found = 0;  
+    
+    
+    if (x == 1)
+    {
+        printf("Geben Sie die Kontonummer ein : ");
+        scanf("%d", &compte.Code_cpt);
+        file = fopen("kontos.txt", "rb");
+        
+        if (file != NULL) {
+            while (fread(&compte0, sizeof(SCompte), 1, file))
+            {
+                if (compte0.Code_cpt == compte.Code_cpt)
+                {
+                    found = 1;
+                    break;
+                }
+            }
+        if (found == 1)
+        {
+            printf("Code existiert bereits!");
+        }else
+        {
+            
+        }
+        
+            
+        
+    }else if (x == 2) {
+        
+    }else if (x == 3) {
+
+    }else if (x == 4) {
+
+    }else if (x == 5)
+    {
+        /* code */
+    }else
+    {
+        printf("schlechte Wahl!");
+    }
+    
+    
+    
+    
+}
 
 void menu() {
     while (1){
@@ -169,8 +226,8 @@ void menu() {
     
 }
 
-void sous_menu(int wahl){
-    if (wahl == 1)
+void sous_menu(int x){
+    if (x == 1)
     {
         printf("1- Hinzufügen\n");
         printf("2- Löschen\n");
@@ -185,7 +242,7 @@ void sous_menu(int wahl){
             
     
         }
-        else if (wahl == 2)
+        else if (x == 2)
         {
             printf("1- Hinzufügen\n");
             printf("2- Suchen\n");
@@ -198,7 +255,7 @@ void sous_menu(int wahl){
             if (x == 5) return;
             // konto_verwalten(x);
         }
-        else if (wahl == 3)
+        else if (x == 3)
         {
             printf("1- Auszahlung\n");
             printf("2- Einzahlung\n");

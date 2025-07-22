@@ -1,0 +1,10 @@
+konto_verwalten :
+1. neues Konto erstellen
+2. konto suchen nach kontonummer und die zugehörigen Informationen anzeigen
+3. kontoliste anzeigen
+4. konto schließen (löschen eines Konto)
+HWS : - Ein kund kann mehrere Kontos haben
+      - Konto_ID ist eindeutig definiert
+      - der Basissaldo muss mindestens 250$ sein
+      - Auszahlung darf nihct 500$ überschreiten
+      - d_compte enthält das Kontoeröffnungsdatum
