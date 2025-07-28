@@ -1,3 +1,0 @@
-works when editing the client data even when the code is invalid same when deleting a client
-no respect for the condtition regarding the date
-same with the account 
