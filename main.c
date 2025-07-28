@@ -107,12 +107,11 @@ int kontos_anzeigen() {
 
 void kund_verwalten(int x) {
     FILE *file;
-    if (x == 1) { // Add client
+    if (x == 1) { 
         SClient client;
         printf("Code client : ");
         scanf("%d", &client.Code_cli);
         
-        // Clear input buffer
         while (getchar() != '\n');
 
         int nbClients = ReadClients();
@@ -124,10 +123,10 @@ void kund_verwalten(int x) {
         }
 
         printf("Nom : ");
-        scanf("%9s", client.Nom);  // Safe input (max 9 chars)
+        scanf("%9s", client.Nom); 
         
         printf("Prenom : ");
-        scanf("%9s", client.Prenom);  // Safe input (max 9 chars)
+        scanf("%9s", client.Prenom); 
 
         file = fopen("Kunden.txt", "ab");
         if (file == NULL) {
@@ -144,7 +143,7 @@ void kund_verwalten(int x) {
             printf("Fehler beim Schreiben!\n");
         }
 
-    } else if (x == 2) { // Delete client
+    } else if (x == 2) { 
         int nbClients = kunden_anzeigen();
         if (nbClients == 0) return;
 
@@ -152,7 +151,6 @@ void kund_verwalten(int x) {
         printf("Code des zu löschenden Clients : ");
         scanf("%d", &code);
 
-        // Verify client exists
         int clientExists = 0;
         for (int i = 0; i < nbClients; i++) {
             if (clients[i].Code_cli == code) {
@@ -166,7 +164,6 @@ void kund_verwalten(int x) {
             return;
         }
 
-        // Delete from file
         remove("Kunden.txt");
         FILE *nvfile = fopen("Kunden.txt", "ab");
         if (nvfile == NULL) {
@@ -186,10 +183,10 @@ void kund_verwalten(int x) {
 
         printf(deleted ? "Client gelöscht.\n\n" : "Löschen fehlgeschlagen!\n\n");
 
-    } else if (x == 3) { // Show clients
+    } else if (x == 3) {
         kunden_anzeigen();
 
-    } else if (x == 4) { // Edit client
+    } else if (x == 4) { 
         int nbClient = kunden_anzeigen();
         if (nbClient == 0) return;
 
@@ -197,7 +194,6 @@ void kund_verwalten(int x) {
         printf("Code des zu ändernden Clients : ");
         scanf("%d", &code);
 
-        // Verify client exists
         int clientIndex = -1;
         for (int i = 0; i < nbClient; i++) {
             if (clients[i].Code_cli == code) {
@@ -211,14 +207,12 @@ void kund_verwalten(int x) {
             return;
         }
 
-        // Get new data
         char nvNom[CMAX], nvPrenom[CMAX];
         printf("Neuer Nachname : ");
         scanf("%9s", nvNom);
         printf("Neuer Vorname : ");
         scanf("%9s", nvPrenom);
 
-        // Update file
         remove("Kunden.txt");
         FILE *nv = fopen("Kunden.txt", "wb");
         if (nv == NULL) {
@@ -343,7 +337,7 @@ void konto_verwalten(int x) {
         }
     } else if (x == 3) {
         kontos_anzeigen();
-    }else if (x == 4) { // Delete account
+    }else if (x == 4) { 
         int nbcomptes = kontos_anzeigen();
         if (nbcomptes == 0) return;
         
@@ -351,7 +345,6 @@ void konto_verwalten(int x) {
         printf("Geben Sie den Code des zu schließenden Konto ein : ");
         scanf("%d", &code);
         
-        // Check if account exists
         int accountExists = 0;
         for (int i = 0; i < nbcomptes; i++) {
             if (comptes[i].Code_cpt == code) {
@@ -388,7 +381,6 @@ void konto_verwalten(int x) {
             printf("Fehler beim Löschen des Kontos!\n\n");
         }
     }
-    // ... (rest of the function remains the same)
 }
 
 void operationen_verwalten(int x) {
@@ -407,7 +399,7 @@ void operationen_verwalten(int x) {
     
     int accountIndex = -1;
     for (int i = 0; i < nbComptes; i++) {
-        if (comptes[i].Code_cpt == code) {  // Fixed: compare with Code_cpt instead of Code_cli
+        if (comptes[i].Code_cpt == code) {
             accountIndex = i;
             break;
         }
